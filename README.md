@@ -39,13 +39,13 @@ go-grpcgateway/
 └── README.md           # This file
 ```
 
-### **Về cấu trúc thư mục:**
+### **About Directory Structure:**
 
 #### **`internal/` - Private Packages**
 
-- **Mục đích**: Chứa code chỉ sử dụng nội bộ trong project này
-- **Đặc điểm**: Go compiler ngăn không cho external packages import code từ `internal/`
-- **Chứa**: Business logic, implementation details, internal services
+- **Purpose**: Contains code for internal use within this project only
+- **Characteristic**: Go compiler prevents external packages from importing code from `internal/`
+- **Contains**: Business logic, implementation details, internal services
 - **Examples**:
   - `internal/config` - Configuration management
   - `internal/service` - Business logic layer
@@ -54,18 +54,18 @@ go-grpcgateway/
 
 #### **`pkg/` - Public Packages**
 
-- **Mục đích**: Chứa code có thể được reuse bởi external applications
-- **Đặc điểm**: Public API, stable interfaces
-- **Chứa**: Libraries, utilities, generated code
+- **Purpose**: Contains code that can be reused by external applications
+- **Characteristic**: Public API, stable interfaces
+- **Contains**: Libraries, utilities, generated code
 - **Examples**:
-  - `pkg/pb` - Generated protobuf files (có thể được import bởi clients)
+  - `pkg/pb` - Generated protobuf files (can be imported by clients)
 
-#### **Tại sao cấu trúc này tốt hơn:**
+#### **Why This Structure is Better:**
 
-1. **Security**: `internal/` ngăn không cho external packages truy cập vào implementation details
-2. **Maintainability**: Tách biệt rõ ràng giữa public API và private implementation
-3. **Modularity**: Dễ dàng refactor internal code mà không ảnh hưởng external dependencies
-4. **Go Conventions**: Tuân theo chuẩn Go project layout
+1. **Security**: `internal/` prevents external packages from accessing implementation details
+2. **Maintainability**: Clear separation between public API and private implementation
+3. **Modularity**: Easy to refactor internal code without affecting external dependencies
+4. **Go Conventions**: Follows standard Go project layout conventions
 
 ## Prerequisites
 
