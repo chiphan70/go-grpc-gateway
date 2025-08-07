@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: grpcgateway_mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: grpcgateway_db
+    volumes:
+      - mongodb_data:/data/db
+      - ./scripts/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - grpcgateway_network
+
+  app:
+    build: .
+    container_name: grpcgateway_app
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    environment:
+      - MONGODB_URI=mongodb://admin:password@mongodb:27017/grpcgateway_db?authSource=admin
+      - MONGODB_DATABASE=grpcgateway_db
+      - GRPC_PORT=9090
+      - HTTP_PORT=8080
+      - HOST=0.0.0.0
+      - LOG_LEVEL=info
+    depends_on:
+      - mongodb
+    networks:
+      - grpcgateway_network
+
+volumes:
+  mongodb_data:
+
+networks:
+  grpcgateway_network:
+    driver: bridge
