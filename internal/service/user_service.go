@@ -145,11 +145,18 @@ func (s *UserService) UpdateUser(ctx context.Context, req *pb.UpdateUserRequest)
 
 	update := bson.M{
 		"$set": bson.M{
-			"name":       req.Name,
-			"email":      req.Email,
-			"phone":      req.Phone,
 			"updated_at": time.Now(),
 		},
+	}
+
+	if req.Name != nil {
+		update["$set"].(bson.M)["name"] = req.Name
+	}
+	if req.Email != nil {
+		update["$set"].(bson.M)["email"] = req.Email
+	}
+	if req.Phone != nil {
+		update["$set"].(bson.M)["phone"] = req.Phone
 	}
 
 	var user models.User

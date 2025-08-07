@@ -146,7 +146,7 @@
           "UserService"
         ]
       },
-      "put": {
+      "patch": {
         "summary": "Update user",
         "operationId": "UserService_UpdateUser",
         "responses": {
