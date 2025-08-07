@@ -1,12 +1,9 @@
 version: v2
 managed:
-  enabled: true
-  override:
-    - file_option: go_package_prefix
-      value: go-grpcgateway/pkg/pb
+  enabled: false
 plugins:
   # Generate Go protobuf stubs
-  - remote: buf.build/protocolbuffers/go:v1.31.0
+  - remote: buf.build/protocolbuffers/go
     out: pkg/pb
     opt:
       - paths=source_relative
@@ -26,8 +23,8 @@ plugins:
       - generate_unbound_methods=true
 
   # Generate OpenAPI/Swagger documentation
-  - remote: buf.build/grpc-ecosystem/openapiv2:v2.18.0
+  - remote: buf.build/grpc-ecosystem/openapiv2:v2.22.0
     out: docs
     opt:
-      - generate_unbound_methods=true
-      - json_names_for_fields=false
+      - allow_merge=true
+      - merge_file_name=api

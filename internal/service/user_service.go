@@ -6,6 +6,7 @@ import (
 
 	"go-grpcgateway/internal/db"
 	"go-grpcgateway/internal/models"
+	"go-grpcgateway/pkg/pb"
 
 	"github.com/sirupsen/logrus"
 	"go.mongodb.org/mongo-driver/bson"

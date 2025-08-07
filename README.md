@@ -183,8 +183,8 @@ Once the application is running, you can access:
 
 - **gRPC Server**: `localhost:9090`
 - **REST API**: `http://localhost:8080/api/v1`
-- **Health Check**: `http://localhost:8080/health`
-- **OpenAPI Docs**: `http://localhost:8080/openapi.json` (generated)
+- **Swagger UI**: `http://localhost:8080/swagger/` (Interactive API Documentation)
+- **OpenAPI JSON**: `http://localhost:8080/swagger.json` (Raw OpenAPI specification)
 
 ### REST API Examples
 
